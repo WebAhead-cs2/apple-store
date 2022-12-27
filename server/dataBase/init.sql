@@ -9,7 +9,7 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE devices (
+CREATE TABLE products (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id),
   type TEXT,  -- airpods, iphones, ipads
@@ -19,6 +19,13 @@ CREATE TABLE devices (
   description TEXT, 
   price VARCHAR (255)
 );
+CREATE TABLE orderHistory(
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  product_id INTEGER REFERENCES products(id),
+  order_date timestamp,
+  
+)
 
 
 

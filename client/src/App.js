@@ -1,4 +1,11 @@
-import React from "react"
-import ReactDOM from "react-dom"
+import './App.css';
+import Home from "./components/home/home.jsx"
+function App() {
+  return (
+    <div className="App">
+       <Home/>
+    </div>
+  );
+}
 
-ReactDOM.render(<h1>hello there</h1>,document.getElementById("root"))
+export default App;
