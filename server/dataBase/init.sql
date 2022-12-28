@@ -11,7 +11,6 @@ CREATE TABLE users (
 
 CREATE TABLE products (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id),
   type TEXT,  -- airpods, iphones, ipads
   product TEXT,
   model TEXT,
@@ -23,7 +22,7 @@ CREATE TABLE orderHistory(
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id),
   product_id INTEGER REFERENCES products(id),
-  order_date timestamp,
+  order_date VARCHAR(255),
   
 )
 

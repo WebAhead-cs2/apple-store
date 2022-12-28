@@ -1,24 +1,25 @@
 const express = require("express");
 var path = require("path");
 const db = require("./dataBase/connection.js");
-const crypto = require("crypto");
 const PORT = 4500;
 const app = express();
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
+app.use(cors());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(__dirname, "/../client/build")));
+// app.use(express.static(path.join(__dirname, "/../client/build")));
 
-// app.get("/", (req, res) => {
-//   res.sendFile(path.join(__dirname, "/client/src", "index.html"));
-// });
-
-app.get("*", (req, res) => {
-  console.log("*****");
-  res.sendFile(path.join(__dirname + "/../client/build/index.html"));
+app.get("/", (req, res) => {
+  
 });
+
+// app.get("*", (req, res) => {
+//   console.log("*****");
+//   res.sendFile(path.join(__dirname + "/../client/build/index.html"));
+// });
 
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
 
