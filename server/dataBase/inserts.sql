@@ -1,38 +1,3 @@
-BEGIN;
-
-DROP TABLE IF EXISTS users, products, orderHistory CASCADE;
-
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  username VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE products (
-  id SERIAL PRIMARY KEY,
-  type TEXT,  -- airpods, iphones, ipads
-  name TEXT,
-  model TEXT,
-  image TEXT,
-  description TEXT, 
-  price VARCHAR (255)
-);
-CREATE TABLE orderhistory(
-  id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id),
-  product_id INTEGER REFERENCES products(id),
-  order_date VARCHAR(255)
-);
-
-
-
-
-INSERT INTO users (username, email, password) VALUES ('aa', 'a@a', '123');
-
-
-
-
 INSERT INTO products (type, name, model, image, description, price) VALUES ('ipad', 'iPad (7th generation)', 'iPad7,12', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcYK4JrD-iT11GvC9c9mDG0BQhPtHdQMnr8w&usqp=CAU', 'The display is now a 10.2” Retina display. Powered by the Apple A10 chipset and available with either 32 or 128GB of storage, the iPad now supports Apple Pencil and the Apple Smart Keyboard. There’s even a headphone jack here. The new iPad OS makes the rounds here, allowing for improved multitasking, external storage support, and overall better iPad experience. The Wi-Fi 7th gen iPad starts at $329 for the 32GB version, while the 128GB will cost you $429. The Wi-Fi + Cellular iPad costs $429 for the 32GB one, while the 128GB one costs $599.', 1155);
 INSERT INTO products (type, name, model, image, description, price) VALUES ('ipad', 'iPad (8th generation)', 'iPad11,6', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSlgrDmm3MZte_Web6HSQimwQ-mH_2CujKtQ&usqp=CAU', 'The Apple iPad (2020) specs include Apple A12 Bionic chipset, 10.2-inch Retina display, 32GB/128GB storage and iPadOS 14. The tablet is available for the starting price of $329.', 1200);
 INSERT INTO products (type, name, model, image, description, price) VALUES ('ipad', 'iPad (9th generation)', 'iPad12,1', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlglsN1zjdGvZfP2TvTfIyDFghCYWtwihm-w&usqp=CAU', 'The iPad 10.2 (2021) is offering 10.2 inch display that supports Apple Pencil and it has Wi-Fi only model or with LTE enabled. The tablet comes with 8526mAh battery, Apple A13 Bionic processor and offers two internal storage variants - 64GB or 256GB.', 2399);
@@ -57,6 +22,3 @@ INSERT INTO products (type, name, model, image, description, price) VALUES ('iph
 INSERT INTO products (type, name, model, image, description, price) VALUES ('iphone', 'iPhone 14', 'iPhone14,7', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE_5J5fH__uZoQJmUqZBjOfZNvuzxSwunFjA&usqp=CAU', 'iPhone 14 has the same superspeedy chip that`s in iPhone 13 Pro. A15 Bionic, with a 5‑core GPU, powers all the latest features and makes graphically intense games and AR apps feel ultrafluid. An updated internal design delivers better thermal efficiency, so you can stay in the action longer.', 3999);
 INSERT INTO products (type, name, model, image, description, price) VALUES ('iphone', 'iPhone 14 Pro', 'iPhone15,2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5SxnJUxhw_Vfi8fboVI9lYRtsvlZ6elBmPw&usqp=CAU', 'The iPhone 14 Pro comes with a 6.1-inch ProMotion OLED display with 1-120Hz adaptive refresh rates, Dolby Vision, and a Face ID Dynamic Island that allows Apple to utilize an always-on display feature, which dims the lock screen similarly to an Apple Watch.', 4399);
 INSERT INTO products (type, name, model, image, description, price) VALUES ('iphone', 'iPhone 14 Pro Max', 'iPhone15,3', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB8EakXL5FARpklyBnLh-TYxtTMfGs0TA4iA&usqp=CAU', 'The iPhone 14 Plus comes with 6.7-inch OLED display with 120Hz refresh rate and Apple`s improved Bionic A16 processor. On the back there is a Triple camera setup with 48MP main camera.', 4699);
-COMMIT;
-
--- INSERT INTO reviews (user_id, Review, postDate) VALUES (1, 'random', now());
