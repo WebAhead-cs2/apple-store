@@ -1,32 +1,65 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import "./login.css";
 
-export default function LoginForm() {
-  const [loginInfo, setLoginInfo] = useState(null);
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    async function fetchLoginInfo() {
-      // Replace 'http://example.com/login' with the URL of your API endpoint
-      const response = await fetch('signup');
-      const data = await response.json();
-      setLoginInfo(data);
-    }
-    fetchLoginInfo();
-  }, []);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  if (!loginInfo) {
-    return <p>Loading login information...</p>;
-  }
+    // Make a POST request to the server with the login credentials
+    await fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          console.log(res);
+          throw new Error('Invalid email or password');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        // If successful, store the JWT in a cookie
+        document.cookie = `jwt=${data.token}`;
+        // Redirect the user to a protected route
+        window.location.href = '/products';
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
+  };
 
   return (
-    <form>
-      <label htmlFor="username">Username:</label>
-      <input type="text" id="username" value={loginInfo.username} />
-      <br />
-      <label htmlFor="password">Password:</label>
-      <input type="password" id="password" value={loginInfo.password} />
-      <br />
-      <button type="submit">Log In</button>
+    <div className="login">
+      <h1>Login</h1>
+    <form onSubmit={handleSubmit}>
+      {error && <p className="error">{error}</p>}
+      <label htmlFor="email">Email:</label><br/>
+      <input
+        type="email"
+        name="email"
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+      /><br/>
+      <label htmlFor="password">Password:</label><br/>
+      <input
+        type="password"
+        name="password"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+      /><br/><br/>
+      <button type="submit">Log in</button>
+      <a href="/signup"><button type="button" >Sign Up</button></a>
     </form>
+    </div>
   );
 }
+
+export default LoginForm;
