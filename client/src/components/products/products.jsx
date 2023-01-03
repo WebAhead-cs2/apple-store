@@ -51,9 +51,8 @@ export default function Products() {
                 </button>
                 {activeProductId === e.id && isDescriptionVisible && (
                   <div
-                    className={`product-description ${
-                      isDescriptionVisible ? "visible" : ""
-                    }`}
+                    className={`product-description ${isDescriptionVisible ? "visible" : ""
+                      }`}
                   >
                     <p>{e.description}</p>
                     <button onClick={() => toggleDescriptionVisibility(e.id)}>
