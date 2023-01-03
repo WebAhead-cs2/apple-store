@@ -6,6 +6,9 @@ html{
   width: 500px;
   height: 30px;
 }
+.products{
+  margin-top: 200px;
+}
 
 .container{
   display:flex;
@@ -27,19 +30,23 @@ html{
   font-size:1vw;
   margin-bottom: 2rem;
   word-wrap: break-word;
-  min-height: 500px;
-  min-width: none;
+  min-height: 550px;
+  min-width: 300px;
   width: 100%;
   display: flex;
   flex-direction: row;
+  box-shadow:5px 10px #CE7F7F;
   
+}
+.card img{
+  box-shadow: 5px 5px #CE7F7F;
+  border-radius: 10px;
 }
 
 
 .card.expanded {
   display: flex;
   flex-direction: row;
-  
 
 }
 
@@ -83,6 +90,9 @@ button {
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: middle;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
 }
 
 button:hover,
@@ -94,4 +104,27 @@ button:active {
 
 button:active {
   opacity: .5;
+}
+
+.cart{
+  background-color: grey;
+  width: 400px;
+  float: right;
+  margin-right: 20px;
+  border-radius: 20px;
+}
+li{
+  display:block ;
+  background-color: #CE7F7F;
+  margin-right: 35px;
+  border-radius: 10px;
+  box-shadow: 5px 5px black;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+ul li img{
+  width: 50px;
+  float: left;
+  margin-top: 20px;
+  margin-left: 20px;
 }
