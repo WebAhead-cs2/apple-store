@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import "./products.css"
 // import Cart from "../cart/cart"
 
@@ -9,7 +10,7 @@ export default function Products() {
   const [activeProductId, setActiveProductId] = useState(null);
   const [cart, setCart] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
-
+  let {type} = useParams();
 
   const toggleDescriptionVisibility = (productId) => {
     setActiveProductId(productId);
@@ -17,14 +18,31 @@ export default function Products() {
   };
   const Data = async () => {
     try {
-      let res = await fetch("products");
+      let res = await fetch("http://localhost:4500/products");
       let resj = await res.json();
+      console.log(resj)
+      if(type){
+        switch(type){
+          case '1':
+            resj = resj.filter(x=>x.type=='iphone')
+            break;
+          case '2':
+            resj = resj.filter(x=>x.type=='ipad')
+            break;
+          case '3':
+              resj = resj.filter(x=>x.type=='airpods')
+              break;
+
+        }
+      }
       setList(resj);
     } catch (err) {
+      console.log(err)
     }
   };
  
   React.useEffect(() => {
+
     Data();
   }, []);
 
