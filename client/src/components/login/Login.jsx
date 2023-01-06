@@ -39,25 +39,25 @@ function LoginForm() {
   return (
     <div className="login">
       <h1>Login</h1>
-    <form onSubmit={handleSubmit}>
-      {error && <p className="error">{error}</p>}
-      <label htmlFor="email">Email:</label><br/>
-      <input
-        type="email"
-        name="email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-      /><br/>
-      <label htmlFor="password">Password:</label><br/>
-      <input
-        type="password"
-        name="password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      /><br/><br/>
-      <button type="submit">Log in</button>
-      <a href="/signup"><button type="button" >Sign Up</button></a>
-    </form>
+      <form onSubmit={handleSubmit}>
+        {error && <p className="error">{error}</p>}
+        <label htmlFor="email">Email:</label><br />
+        <input
+          type="email"
+          name="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+        /><br />
+        <label htmlFor="password">Password:</label><br />
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        /><br /><br />
+        <button type="submit">Log in</button>
+        <a href="/signup"><button type="button" >Sign Up</button></a>
+      </form>
     </div>
   );
 }
