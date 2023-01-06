@@ -2,19 +2,17 @@ import "./sign-up.css";
 import React, { useState } from "react";
 
 const SignUpForm = () => {
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const [data, setData] = useState({name:"",email:"",password:""});
+  const [data, setData] = useState({name:"",email:"",password:"",age:"",number:""});
   const onChange = (key) => (e) => setData({ ...data, [key]: e.target.value });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(event.name, event.email, event.password);
 
-    if (!data.name || !data.email || !data.password) {
-      return alert("Please complete all fields");
+    if (!data.name || !data.email || !data.password || !data.age || data.number) {
+      setError(error.message);
+      return new Error("Please complete all fields");
     }
     
     fetch("/signup", {
@@ -63,8 +61,23 @@ const SignUpForm = () => {
         id="password"
         value={data.password}
         onChange={onChange("password")}
-      /><br/><br/>
+      /><br/>
+       
+       <label htmlFor="age"> Age:</label><br/>
+      <input
+        type="text"
+        id="text"
+        value={data.age}
+        onChange={onChange("age")}
+      /><br/>
 
+      <label htmlFor="phone">Phone Number:</label><br/>
+      <input
+        type="text"
+        id="phone"
+        value={data.password}
+        onChange={onChange("phone")}
+      /><br/>
       <button type="submit">Sign Up</button>
     </form>
     </div>

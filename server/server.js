@@ -17,12 +17,10 @@ app.use(bodyParser.json());
 
 app.post('/login', async (req, res) => {
   let email = req.body.email;
-  let password = req.body.password;
-   console.log(email,password);
+  const hash = crypto.createHash("sha256").update(req.body.password).digest("hex");
   
-   db.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password], function(error, result) {
-    console.log(error);
-    console.log(result);
+   db.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, hash], function(error, result) {
+    
       if (error) {
         return res.status(500).send();
       }
@@ -30,21 +28,19 @@ app.post('/login', async (req, res) => {
         return res.status(401).json({error: "incorrect email or password"});
       }
       // req.session.user = result.rows[0];
-      res.json("welcome !!");
+      res.json(result.rows[0]);
     });
   });
 
 
 app.post('/signup', (req, res) => {
-
+  
   if (!req.body.name || !req.body.email || !req.body.password) {
     return res.status(400).json({ error: 'All fields are required' });
   }
-  
-  
+  const hash = crypto.createHash("sha256").update(req.body.password).digest("hex");
   const query = `INSERT INTO users (username, email, password) VALUES ($1, $2, $3)`;
-  const values = [req.body.name, req.body.email, req.body.password];
-
+  const values = [req.body.name, req.body.email, hash];
 
   db.query(query, values, (error, result) => {
     if (error) {
@@ -59,8 +55,6 @@ app.post('/signup', (req, res) => {
 app.get('/products',async (req,res)=>{
    let data = await db.query("SELECT * FROM products");
    res.json(data.rows);
-
-
 });
 
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));

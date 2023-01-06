@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import "./login.css";
 
 function LoginForm() {
+  // const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -20,16 +21,14 @@ function LoginForm() {
     })
       .then((res) => {
         if (!res.ok) {
-          console.log(res);
+          
           throw new Error('Invalid email or password');
         }
         return res.json();
       })
       .then((data) => {
-        // If successful, store the JWT in a cookie
-        document.cookie = `jwt=${data.token}`;
-        // Redirect the user to a protected route
-        window.location.href = '/products';
+        window.localStorage.setItem('user', JSON.stringify(data.username))
+         window.location.href = '/products';
       })
       .catch((err) => {
         setError(err.message);

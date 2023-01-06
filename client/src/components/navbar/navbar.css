@@ -1,9 +1,22 @@
 .navbar{
-  position: fixed;
-  height: 40px;
-  width: 100%;
-  margin-top: 0;
+  overflow: hidden;
+  background-color: black;
+  color: black;
+  width:100%;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
 }
 a{
   color: white;
+  padding: 20px;
 }
+/* 
+.cartBtn{
+  float: right;
+  margin-left: 40px;
+  margin-right: 180px;
+ 
+} */

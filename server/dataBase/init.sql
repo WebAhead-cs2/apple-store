@@ -6,7 +6,9 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL
+  password VARCHAR(255) NOT NULL,
+  age VARCHAR(255) NOT NULL,
+  phone VARCHAR (255) NOT NULL
 );
 
 CREATE TABLE products (
@@ -21,14 +23,16 @@ CREATE TABLE products (
 CREATE TABLE orderhistory(
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id),
-  product_id INTEGER REFERENCES products(id),
-  order_date VARCHAR(255)
+  product_ids VARCHAR(255),
+  total_price VARCHAR(255),
+  order_date timestamp,
+  payment_card_number VARCHAR(255)
 );
 
 
 
-
-INSERT INTO users (username, email, password) VALUES ('aa', 'a@a', '123');
+INSERT INTO users (username, email, password,age,phone) VALUES ('aa', 'a@a', '123','25','0505555555');
+INSERT INTO orderhistory ( user_id, total_price, order_date, payment_card_number, product_ids) VALUES ( 1, 100.00, '2021-01-01', '1234-5678-9012-3456', '[1,2,3]');
 
 
 

@@ -2,12 +2,15 @@ html{
   background-color: #302727;
 }
 
+p{
+  line-height: 20px;
+  font-size: 18px;      
+  font-weight: bold;   
+  text-align: center;
+}
 .search{
   width: 500px;
   height: 30px;
-}
-.products{
-  margin-top: 200px;
 }
 
 .container{
@@ -36,6 +39,7 @@ html{
   display: flex;
   flex-direction: row;
   box-shadow:5px 10px #CE7F7F;
+  line-height : 10px;
   
 }
 .card img{
@@ -127,4 +131,25 @@ ul li img{
   float: left;
   margin-top: 20px;
   margin-left: 20px;
+}
+
+
+.removeBtn{
+  border-radius: 50px;
+  height: 10px;
+  color:black;
+  
+  display: inline-block;
+  content: "\00d7";
+  background-color: #fefbfb;
+  width: 40px;
+  
+}
+
+.removeBtn:after{
+  display: inline-block;
+  content: "\00d7"; 
+  
+ 
+  
 }
